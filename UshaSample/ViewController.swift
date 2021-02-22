@@ -158,8 +158,12 @@ class DetailViewController: UIViewController {
 		
 		// get the aspect ratio
 		let m = img.size.height / img.size.width
+		
 		// add new aspect ratio constraint to the image view
+		//	because this constraint will have (by default) a Priority of Required (1000),
+		//	it will "override" the Storyboard 16:10 constraint that has Priority: 750
 		self.imageView.heightAnchor.constraint(equalTo: self.imageView.widthAnchor, multiplier: m).isActive = true
+		
 		// animate the size change
 		UIView.animate(withDuration: 0.3, animations: { [weak self] in
 			guard let self = self else { return }
